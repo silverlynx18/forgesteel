@@ -50,7 +50,6 @@ import { Monster } from '../../models/monster';
 import { MonsterOrganizationType } from '../../enums/monster-organization-type';
 import { MonsterRoleType } from '../../enums/monster-role-type';
 import { RetainerListPage } from '../pages/retainers/retainer-list/retainer-list-page';
-import { RetainerSheetPage } from '../pages/retainer-sheet/retainer-sheet-page';
 import { MonsterGroup } from '../../models/monster-group';
 import { MonsterSelectModal } from '../modals/select/monster-select/monster-select-modal';
 import { MonsterModal } from '../modals/monster/monster-modal';
@@ -1504,7 +1503,6 @@ export const Main = (props: Props) => {
 		setDrawer(
 			<PartyModal
 				heroes={heroes.filter(h => h.folder === folder)}
-				playbook={playbook}
 				sourcebooks={[ SourcebookData.core, SourcebookData.orden, ...homebrewSourcebooks ]}
 				options={options}
 				onClose={() => setDrawer(null)}
@@ -1778,22 +1776,6 @@ export const Main = (props: Props) => {
 										}}
 										heroes={heroes}
 										persistHero={persistHero}
-									/>
-								}
-							/>
-							<Route
-								path=':retainerID'
-								element={
-									<RetainerSheetPage
-										playbook={playbook}
-										options={options}
-										sourcebooks={SourcebookLogic.getSourcebooks(homebrewSourcebooks)}
-										highlightAbout={errors.length > 0}
-										showDirectory={showDirectoryPane}
-										showAbout={showAbout}
-										showRoll={showRoll}
-										showReference={showReference}
-										persistPlaybook={persistPlaybook}
 									/>
 								}
 							/>

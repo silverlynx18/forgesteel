@@ -54,9 +54,6 @@ export const useNavigation = () => {
 		},
 		goToRetainers: () => {
 			return navigate('/retainers');
-		},
-		goToRetainerSheet: (retainerID: string) => {
-			return navigate(`/retainers/${retainerID}`);
 		}
 	};
 };
