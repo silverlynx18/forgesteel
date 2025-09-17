@@ -17,6 +17,7 @@ import { HeroLogic } from '../../../logic/hero-logic';
 import { Modal } from '../modal/modal';
 import { Options } from '../../../models/options';
 import { PanelMode } from '../../../enums/panel-mode';
+import { Playbook } from '../../../models/playbook';
 import { Sourcebook } from '../../../models/sourcebook';
 import { SourcebookLogic } from '../../../logic/sourcebook-logic';
 import { useState } from 'react';
@@ -25,6 +26,7 @@ import './party-modal.scss';
 
 interface Props {
 	heroes: Hero[];
+	playbook: Playbook;
 	sourcebooks: Sourcebook[];
 	options: Options;
 	onClose: () => void;
@@ -258,6 +260,27 @@ export const PartyModal = (props: Props) => {
 											))
 										}
 									</tr>
+								</tbody>
+							</table>
+							<HeaderText>Retainers</HeaderText>
+							<table>
+								<thead>
+									<tr>
+										<th></th>
+										<th>Mentors</th>
+									</tr>
+								</thead>
+								<tbody>
+									{
+										props.playbook.retainers.map(r => (
+											<tr key={r.id}>
+												<td className='row-label'>{r.name}</td>
+												<td className='row-cell'>
+													{props.heroes.filter(h => h.retainerIDs.includes(r.id)).map(h => h.name).join(', ')}
+												</td>
+											</tr>
+										))
+									}
 								</tbody>
 							</table>
 						</div>

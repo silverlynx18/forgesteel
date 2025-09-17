@@ -1,0 +1,11 @@
+.retainer-sheet-page {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	height: 100%;
+	overflow: hidden;
+
+	.retainer-sheet-page-content {
+		overflow-y: auto;
+		padding: 20px;
+	}
+}

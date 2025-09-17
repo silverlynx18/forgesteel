@@ -179,6 +179,10 @@ export class HeroUpdateLogic {
 			hero.abilityCustomizations = [];
 		}
 
+		if (hero.retainerIDs === undefined) {
+			hero.retainerIDs = [];
+		}
+
 		HeroLogic.getFormerAncestries(hero).flatMap(t => t.features).forEach(FeatureUpdateLogic.updateFeature);
 		HeroLogic.getDomains(hero).flatMap(d => d.featuresByLevel).flatMap(lvl => lvl.features).forEach(FeatureUpdateLogic.updateFeature);
 		HeroLogic.getTitles(hero).flatMap(t => t.features).forEach(FeatureUpdateLogic.updateFeature);

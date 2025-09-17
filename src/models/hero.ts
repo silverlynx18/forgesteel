@@ -32,6 +32,7 @@ export interface Hero {
 	features: Feature[];
 	state: HeroState;
 	abilityCustomizations: AbilityCustomization[];
+	retainerIDs: string[];
 }
 
 export type HeroEditTab = 'start' | 'ancestry' | 'culture' | 'career' | 'class' | 'complication' | 'details';

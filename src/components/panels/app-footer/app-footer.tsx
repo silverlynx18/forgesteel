@@ -1,5 +1,5 @@
 import { Badge, Button, Divider, Flex } from 'antd';
-import { BookOutlined, PlayCircleOutlined, ReadOutlined, TeamOutlined } from '@ant-design/icons';
+import { BookOutlined, PlayCircleOutlined, ReadOutlined, TeamOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { ErrorBoundary } from '../../controls/error-boundary/error-boundary';
 import { useMediaQuery } from '../../../hooks/use-media-query';
 import { useNavigation } from '../../../hooks/use-navigation';
@@ -9,7 +9,7 @@ import './app-footer.scss';
 import shield from './../../../assets/shield.png';
 
 interface Props {
-	page: 'welcome' | 'heroes' | 'library' | 'playbook' | 'session' | 'player-view';
+	page: 'welcome' | 'heroes' | 'library' | 'playbook' | 'session' | 'player-view' | 'retainers';
 	highlightAbout: boolean;
 	showReference: () => void;
 	showRoll: () => void;
@@ -33,6 +33,10 @@ export const AppFooter = (props: Props) => {
 								<Divider type='vertical' />
 								<Button type='text' className={props.page === 'heroes' ? 'selected' : ''} icon={<TeamOutlined />} onClick={() => navigation.goToHeroList()}>
 									Heroes
+								</Button>
+								<Divider type='vertical' />
+								<Button type='text' className={props.page === 'retainers' ? 'selected' : ''} icon={<UsergroupAddOutlined />} onClick={() => navigation.goToRetainers()}>
+									Retainers
 								</Button>
 								<Divider type='vertical' />
 								<Button type='text' className={props.page === 'library' ? 'selected' : ''} icon={<BookOutlined />} onClick={() => navigation.goToLibraryList('ancestry')}>

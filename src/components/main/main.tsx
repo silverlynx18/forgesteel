@@ -47,7 +47,12 @@ import { LibraryListPage } from '../pages/library/library-list/library-list-page
 import { LibraryViewPage } from '../pages/library/library-view/library-view-page';
 import { MainLayout } from './main-layout';
 import { Monster } from '../../models/monster';
+import { MonsterOrganizationType } from '../../enums/monster-organization-type';
+import { MonsterRoleType } from '../../enums/monster-role-type';
+import { RetainerListPage } from '../pages/retainers/retainer-list/retainer-list-page';
+import { RetainerSheetPage } from '../pages/retainer-sheet/retainer-sheet-page';
 import { MonsterGroup } from '../../models/monster-group';
+import { MonsterSelectModal } from '../modals/select/monster-select/monster-select-modal';
 import { MonsterModal } from '../modals/monster/monster-modal';
 import { Montage } from '../../models/montage';
 import { Negotiation } from '../../models/negotiation';
@@ -1499,6 +1504,7 @@ export const Main = (props: Props) => {
 		setDrawer(
 			<PartyModal
 				heroes={heroes.filter(h => h.folder === folder)}
+				playbook={playbook}
 				sourcebooks={[ SourcebookData.core, SourcebookData.orden, ...homebrewSourcebooks ]}
 				options={options}
 				onClose={() => setDrawer(null)}
@@ -1736,6 +1742,58 @@ export const Main = (props: Props) => {
 										showMonster={onSelectMonster}
 										saveChanges={saveLibraryElement}
 										setOptions={persistOptions}
+									/>
+								}
+							/>
+						</Route>
+						<Route path='retainers'>
+							<Route
+								index={true}
+								element={
+									<RetainerListPage
+										playbook={playbook}
+										sourcebooks={SourcebookLogic.getSourcebooks(homebrewSourcebooks)}
+										options={options}
+										highlightAbout={errors.length > 0}
+										showDirectory={showDirectoryPane}
+										showAbout={showAbout}
+										showRoll={showRoll}
+										showReference={showReference}
+										addRetainer={() => {
+											setDrawer(
+												<MonsterSelectModal
+													sourcebooks={SourcebookLogic.getSourcebooks(homebrewSourcebooks)}
+													options={options}
+													onClose={() => setDrawer(null)}
+													onSelect={monster => {
+														const copy = Utils.copy(playbook);
+														const newRetainer = Utils.copy(monster);
+														newRetainer.id = Utils.guid();
+														copy.retainers.push(newRetainer);
+														persistPlaybook(copy);
+														setDrawer(null);
+													}}
+												/>
+											);
+										}}
+										heroes={heroes}
+										persistHero={persistHero}
+									/>
+								}
+							/>
+							<Route
+								path=':retainerID'
+								element={
+									<RetainerSheetPage
+										playbook={playbook}
+										options={options}
+										sourcebooks={SourcebookLogic.getSourcebooks(homebrewSourcebooks)}
+										highlightAbout={errors.length > 0}
+										showDirectory={showDirectoryPane}
+										showAbout={showAbout}
+										showRoll={showRoll}
+										showReference={showReference}
+										persistPlaybook={persistPlaybook}
 									/>
 								}
 							/>

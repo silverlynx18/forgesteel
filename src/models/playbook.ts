@@ -2,6 +2,7 @@ import { Adventure } from './adventure';
 import { Counter } from './counter';
 import { Encounter } from './encounter';
 import { Montage } from './montage';
+import { Monster } from './monster';
 import { Negotiation } from './negotiation';
 import { TacticalMap } from './tactical-map';
 
@@ -12,6 +13,7 @@ export interface Playbook {
 	montages: Montage[];
 	tacticalMaps: TacticalMap[];
 	counters: Counter[];
+	retainers: Monster[];
 	playerViewID: string | null;
 }
 

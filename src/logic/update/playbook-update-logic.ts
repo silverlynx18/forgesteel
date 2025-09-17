@@ -165,6 +165,10 @@ export class PlaybookUpdateLogic {
 			playbook.counters = [];
 		}
 
+		if (playbook.retainers === undefined) {
+			playbook.retainers = [];
+		}
+
 		if (playbook.playerViewID === undefined) {
 			playbook.playerViewID = null;
 		}
